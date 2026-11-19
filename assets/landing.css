@@ -1,0 +1,183 @@
+:root {
+  --verde: #0b6e4f;
+  --verde-claro: #6fd3a8;
+  --asfalto: #1e2729;
+  --asfalto-2: #283436;
+  --visor: #ffb627;
+  --papel: #fafaf5;
+  --texto: #1a2421;
+  --suave: #4a5753;
+  --nevoa: #e3ece8;
+  --alerta: #c8283a;
+  --display: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--texto);
+  font: 400 1.125rem/1.6 var(--corpo);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--verde); text-underline-offset: 3px; }
+a:focus-visible, .selo:focus-visible { outline: 3px solid var(--visor); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; }
+h2 { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.6em; }
+h3 { font-size: 1.375rem; font-weight: 700; margin: 1.4em 0 0.3em; }
+p { margin: 0 0 1em; max-width: 62ch; }
+
+/* Faixa amarela tracejada, como a de rodovia, que se preenche com a rolagem */
+.faixa {
+  position: fixed; left: 14px; top: 0; bottom: 0; width: 4px; z-index: 5; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255, 182, 39, 0.22) 0 26px, transparent 26px 46px);
+}
+.faixa-progresso {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, var(--visor) 0 26px, transparent 26px 46px);
+  transform-origin: top; transform: scaleY(0);
+}
+
+.topo {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+  padding: 20px clamp(32px, 6vw, 72px);
+}
+.marca { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font: 700 1.2rem var(--display); }
+.marca img { border-radius: 9px; }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 96px clamp(32px, 6vw, 72px) 56px;
+  background:
+    radial-gradient(ellipse 60% 55% at 72% 58%, rgba(11, 110, 79, 0.42), transparent 70%),
+    var(--asfalto);
+  color: #fff;
+  overflow: hidden;
+}
+.hero h1 {
+  font-size: clamp(3rem, 7.4vw, 6.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin-bottom: 0.35em;
+  max-width: 9ch;
+}
+.hero-sub { font-size: clamp(1.125rem, 1.6vw, 1.3rem); color: #d3dcd9; max-width: 34ch; }
+.gratis { font-size: 0.95rem; color: #9fb0ab; margin-top: 18px; }
+
+.lojas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.selo {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 18px 10px 14px; min-width: 190px;
+  background: #000; color: #fff;
+  border: 1px solid #5d6a67; border-radius: 12px;
+  cursor: default; user-select: none;
+}
+.selo span { display: flex; flex-direction: column; font: 600 1.3rem/1.05 var(--corpo); }
+.selo small { font: 500 0.75rem/1.2 var(--corpo); color: #c9d2cf; }
+
+.hero-cena { position: relative; height: min(78svh, 720px); min-height: 380px; }
+#bomba { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; }
+
+/* Nota */
+.nota {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+  padding: clamp(72px, 10vw, 128px) clamp(32px, 6vw, 72px);
+  max-width: 1240px; margin: 0 auto;
+}
+.nota-texto > p:first-of-type { font-size: 1.3rem; color: var(--suave); }
+.nota-rodape { font-size: 1rem; color: var(--suave); border-left: 3px solid var(--visor); padding-left: 14px; margin-top: 1.6em; }
+
+.cupom { margin: 0; position: sticky; top: 48px; }
+.cupom-papel {
+  font: 400 0.98rem/1.45 "Courier Prime", "Courier New", monospace;
+  background: #fff;
+  color: #2b2b2b;
+  padding: 28px 24px 34px;
+  box-shadow: 0 18px 40px -18px rgba(30, 39, 41, 0.45);
+  /* serrilha do papel térmico */
+  -webkit-mask: radial-gradient(circle 7px at 50% 100%, transparent 98%, #000) bottom / 18px 100% repeat-x;
+  mask: radial-gradient(circle 7px at 50% 100%, transparent 98%, #000) bottom / 18px 100% repeat-x;
+  max-width: 380px;
+  transform: rotate(1.2deg);
+}
+.cupom-papel p { margin: 0; max-width: none; }
+.c-centro { text-align: center; }
+.c-linha { border-top: 1px dashed #8a8a8a; margin: 12px 0 !important; }
+.c-par { display: flex; justify-content: space-between; gap: 12px; }
+.c-total { font-size: 1.35rem; font-weight: 700; }
+.c-total span:last-child { color: var(--verde); }
+.c-pe { margin-top: 16px !important; color: #8a8a8a; font-size: 0.85rem; }
+
+/* App */
+.app {
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(72px, 10vw, 128px) clamp(32px, 6vw, 72px);
+  background: var(--nevoa);
+}
+.app-texto { max-width: 620px; }
+.recursos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
+.recursos h3 { margin-top: 0.8em; }
+.recursos p { color: var(--suave); }
+
+.celular {
+  justify-self: center;
+  width: min(300px, 80vw); aspect-ratio: 9 / 19;
+  padding: 12px; border-radius: 44px;
+  background: var(--asfalto);
+  box-shadow: 0 30px 60px -24px rgba(30, 39, 41, 0.55);
+}
+.tela { height: 100%; border-radius: 34px; background: #f3f4f6; padding: 44px 14px 14px; overflow: hidden; font-size: 0.82rem; line-height: 1.3; }
+.tela-titulo { font: 700 1.35rem var(--corpo); margin-bottom: 12px; }
+.tela-chips { display: flex; gap: 6px; margin-bottom: 12px; }
+.tela-chips span { border: 1px solid #b9c2bf; border-radius: 8px; padding: 4px 9px; }
+.tela-chips .on { background: #d2e3dd; border-color: #d2e3dd; color: var(--verde); font-weight: 600; }
+.tela-lista { list-style: none; margin: 0; padding: 0; background: #fff; border-radius: 14px; }
+.tela-lista li { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 12px; border-top: 1px solid #e6e8ea; }
+.tela-lista li:first-child { border-top: 0; }
+.tela-lista span { color: #69716e; }
+.tela-lista em { grid-column: 1 / -1; font-style: normal; color: #69716e; }
+.tela-lista .n-bom { color: var(--verde); font-weight: 600; }
+.tela-lista .n-alerta { color: var(--alerta); font-weight: 600; }
+
+/* Marcar e privacidade */
+.marcar, .privacidade { padding: clamp(72px, 10vw, 112px) clamp(32px, 6vw, 72px); max-width: 1240px; margin: 0 auto; }
+.marcar { border-bottom: 1px solid #d6dfdb; }
+.marcar p, .privacidade p { font-size: 1.2rem; }
+
+.rodape { background: var(--asfalto); color: #b8c4c0; padding: 40px clamp(32px, 6vw, 72px); font-size: 0.95rem; }
+.rodape p { max-width: 90ch; }
+.rodape a { color: var(--verde-claro); }
+
+/* Telas estreitas */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 88px; gap: 0; }
+  .hero-cena { order: -1; height: 46svh; min-height: 300px; margin: 0 -16px; }
+  .nota, .app { grid-template-columns: 1fr; }
+  .cupom { position: static; justify-self: center; }
+  .celular { order: 2; }
+  .recursos { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .faixa { display: none; }
+  .topo, .hero, .nota, .app, .marcar, .privacidade, .rodape { padding-left: 16px; padding-right: 16px; }
+  .selo { min-width: 0; flex: 1 1 160px; }
+}
+
+/* Sem WebGL: o ícone do app no lugar da cena */
+.sem-3d { background: url("icone.png") center / min(60%, 320px) no-repeat; }
+.sem-3d #bomba { display: none; }

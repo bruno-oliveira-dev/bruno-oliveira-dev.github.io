@@ -4,26 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Esse Posto é Confiável?</title>
-<meta name="description" content="App gratuito que mostra os postos de combustível perto de você com uma nota de confiabilidade.">
-<style>
-  :root { color-scheme: light dark; --texto: #1b1c1f; --fundo: #ffffff; --suave: #45474c; --destaque: #0b6e4f; }
-  @media (prefers-color-scheme: dark) { :root { --texto: #e3e3e7; --fundo: #121316; --suave: #c5c6cb; --destaque: #6fd3a8; } }
-  body { margin: 0; background: var(--fundo); color: var(--texto); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 640px; margin: 0 auto; padding: 48px 16px 64px; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 12px; }
-  p { margin: 0 0 16px; }
-  .suave { color: var(--suave); font-size: 0.95rem; }
-  a { color: var(--destaque); }
-</style>
+<meta name="description" content="Antes de abastecer, confira o posto: nota de motoristas que comprovam o abastecimento com o cupom fiscal e o histórico de fiscalização da ANP. Em breve para Android e iPhone.">
+<meta name="theme-color" content="#0B6E4F">
+<meta property="og:title" content="Esse Posto é Confiável?">
+<meta property="og:description" content="A nota de cada posto vem de quem abasteceu lá e do histórico da ANP. Em breve para Android e iPhone.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/landing.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+  "motion": "https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm"
+} }
+</script>
+<script type="module" src="assets/landing.js"></script>
 </head>
 <body>
+<div class="faixa" aria-hidden="true"><div class="faixa-progresso"></div></div>
+
+<header class="topo">
+  <a class="marca" href="./">
+    <img src="assets/icone.png" alt="" width="36" height="36">
+    <span>Esse Posto é Confiável?</span>
+  </a>
+</header>
+
 <main>
-<h1>Esse Posto é Confiável?</h1>
-<p>App gratuito que mostra os postos de combustível perto de você com uma nota de confiabilidade, formada por
-avaliações de motoristas e pelo histórico de fiscalização da ANP.</p>
-<p><a href="privacidade.html">Política de Privacidade</a> · <a href="excluir-conta.html">Excluir conta</a></p>
-<p class="suave">SHARPAI SOLUTIONS CONSULTORIA E DESENVOLVIMENTO DE SOFTWARE LTDA · CNPJ 67.081.071/0001-37<br>
-Contato: <a href="mailto:brunexx15@gmail.com">brunexx15@gmail.com</a></p>
+  <section class="hero">
+    <div class="hero-texto">
+      <h1>Antes de abastecer, confira o posto.</h1>
+      <p class="hero-sub">Cada posto do Brasil tem uma nota formada por quem abasteceu lá, com o cupom fiscal como prova, e pelo histórico de fiscalização da ANP.</p>
+      <div class="lojas" aria-label="Lojas de aplicativos">
+        <span class="selo" role="img" aria-label="Em breve no Google Play">
+          <svg viewBox="0 0 24 26" width="24" height="26" aria-hidden="true">
+            <path d="M1 1.2 13.6 13 1 24.8c-.4-.3-.6-.8-.6-1.4V2.6c0-.6.2-1.1.6-1.4Z" fill="#00D7FE"/>
+            <path d="m17.8 8.9-4.2 4.1L1 1.2c.4-.4 1.1-.5 1.8-.1l15 7.8Z" fill="#00F076"/>
+            <path d="M17.8 17.1 2.8 24.9c-.7.4-1.4.3-1.8-.1L13.6 13l4.2 4.1Z" fill="#FF3A44"/>
+            <path d="m22.2 11.2-4.4-2.3-4.2 4.1 4.2 4.1 4.4-2.3c1.3-.7 1.3-2.9 0-3.6Z" fill="#FFD400"/>
+          </svg>
+          <span><small>Em breve no</small>Google Play</span>
+        </span>
+        <span class="selo" role="img" aria-label="Em breve na App Store">
+          <svg viewBox="0 0 22 26" width="22" height="26" aria-hidden="true">
+            <path fill="#fff" d="M18.2 13.8c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.6 12.5 1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1 1.9 0 2.4 1 4.1 1 1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5 0 0-3.3-1.3-3.4-5.2ZM15.1 4.6c.8-1 1.4-2.5 1.3-3.9-1.2.1-2.7.8-3.6 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.6-1.8Z"/>
+          </svg>
+          <span><small>Em breve na</small>App Store</span>
+        </span>
+      </div>
+      <p class="gratis">Gratuito. Para ver os postos você não precisa de conta.</p>
+    </div>
+    <div class="hero-cena">
+      <canvas id="bomba" aria-label="Bomba de combustível em 3D com o visor mostrando a nota 4,6 do posto" role="img"></canvas>
+    </div>
+  </section>
+
+  <section class="nota" aria-labelledby="t-nota">
+    <div class="nota-texto">
+      <h2 id="t-nota">De onde vem a nota</h2>
+      <p>A nota vai de 1 a 5 e junta duas fontes que se completam.</p>
+      <h3>Quem abasteceu</h3>
+      <p>Motoristas contam como foi: carro falhando, bomba marcando a mais, rendimento que caiu ou nenhum problema. Quem lê o QR do cupom fiscal prova que abasteceu naquele posto, e essa avaliação pesa mais. Avaliações recentes contam mais que as antigas.</p>
+      <h3>O que a ANP encontrou</h3>
+      <p>Autos de infração por combustível fora da especificação ou por bomba que entrega menos do que marca, nos últimos 24 meses, puxam a nota para baixo e aparecem como alerta no posto.</p>
+      <p class="nota-rodape">Um posto só ganha nota a partir de 3 avaliações. Antes disso, aparece como "Ainda sem avaliações".</p>
+    </div>
+    <figure class="cupom" aria-label="Exemplo de resumo da nota de um posto, no formato de um cupom fiscal">
+      <div class="cupom-papel">
+        <p class="c-centro">AUTO POSTO EXEMPLO LTDA<br>CNPJ 00.000.000/0001-00<br>RODOVIA SP-000, KM 12</p>
+        <p class="c-linha"></p>
+        <p class="c-par"><span>Avaliações com cupom</span><span>31</span></p>
+        <p class="c-par"><span>Avaliações sem cupom</span><span>9</span></p>
+        <p class="c-par"><span>Sem problemas</span><span>27</span></p>
+        <p class="c-par"><span>Rendimento caiu</span><span>4</span></p>
+        <p class="c-linha"></p>
+        <p class="c-par"><span>Fiscalização ANP, 24 meses</span><span></span></p>
+        <p class="c-par"><span>&nbsp;Qualidade</span><span>sem autos</span></p>
+        <p class="c-par"><span>&nbsp;Quantidade</span><span>sem autos</span></p>
+        <p class="c-linha"></p>
+        <p class="c-par c-total"><span>NOTA DO POSTO</span><span>4,6</span></p>
+        <p class="c-centro c-pe">Exemplo ilustrativo</p>
+      </div>
+    </figure>
+  </section>
+
+  <section class="app" aria-labelledby="t-app">
+    <div class="celular" aria-hidden="true">
+      <div class="tela">
+        <p class="tela-titulo">Postos perto de você</p>
+        <div class="tela-chips"><span class="on">5 km</span><span>10 km</span><span>Todas</span></div>
+        <ul class="tela-lista">
+          <li><b>Auto Posto Primavera</b><span>800 m</span><em class="n-bom">4,8 · 52 avaliações</em></li>
+          <li><b>Posto Estrela da Serra</b><span>1,4 km</span><em class="n-bom">4,5 · 19 avaliações</em></li>
+          <li><b>Posto Rota Sul</b><span>2,1 km</span><em class="n-alerta">2,9 · registro da ANP</em></li>
+          <li><b>Comercial Ipê Amarelo</b><span>3,7 km</span><em>Ainda sem avaliações</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="app-texto">
+      <h2 id="t-app">O que você encontra no app</h2>
+      <ul class="recursos">
+        <li><h3>Postos perto de você</h3><p>Em lista ou no mapa, a 2, 5, 10 ou 20 km, com filtro por bandeira.</p></li>
+        <li><h3>Alerta da ANP</h3><p>Posto com auto de infração de qualidade ou de quantidade recente aparece marcado, com o que foi encontrado e quando.</p></li>
+        <li><h3>Ranking da região</h3><p>Os postos mais bem avaliados perto de você, para escolher antes de sair.</p></li>
+        <li><h3>Rota até o posto</h3><p>Um toque abre o Google Maps ou o Waze.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="marcar" aria-labelledby="t-marcar">
+    <h2 id="t-marcar">Posto fora do mapa? Coloque ele lá.</h2>
+    <p>O app parte do cadastro oficial da ANP, com mais de 45 mil postos. Alguns endereços, principalmente em rodovias, não dão para achar no mapa. Se você está num deles, marque o lugar com o GPS do celular: com o cupom fiscal do posto, ele entra no mapa na hora; sem cupom, entra quando outra pessoa confirmar.</p>
+  </section>
+
+  <section class="privacidade" aria-labelledby="t-priv">
+    <h2 id="t-priv">Sem senha e sem cadastro longo</h2>
+    <p>Para avaliar, entre com a sua conta Google ou, no iPhone, com a Apple. O cupom fiscal serve só para conferir o posto: o app não guarda a chave do cupom, apenas uma impressão dela para impedir que o mesmo cupom seja usado duas vezes.</p>
+    <p><a href="privacidade.html">Política de privacidade</a> e <a href="excluir-conta.html">como excluir sua conta</a>.</p>
+  </section>
 </main>
+
+<footer class="rodape">
+  <p>SHARPAI SOLUTIONS CONSULTORIA E DESENVOLVIMENTO DE SOFTWARE LTDA, CNPJ 67.081.071/0001-37. Contato: <a href="mailto:brunexx15@gmail.com">brunexx15@gmail.com</a></p>
+  <p>Dados de postos e fiscalizações: ANP. Localizações: IBGE e <a href="https://www.openstreetmap.org/copyright">© colaboradores do OpenStreetMap</a>. Google Play é marca da Google LLC. App Store é marca da Apple Inc.</p>
+</footer>
 </body>
 </html>
